@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BodybuildingApp</title>
+  <%= stylesheet_link_tag    'application'%>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<% if request.path == '/' %>
+<body class="home-page">
+<% elsif request.path == '/show'%>
+<body class="single-page">
+<% else %>
+<body class="contact-page">
+<% end %>
+<div class="wrap-body">
+<% if request.path == '/' %>
+<%= render partial: "shared/header_1"%>
+<% elsif request.path == '/show'%>
+<%= render partial: "shared/header_2"%>
+<% else %>
+<%= render partial: "shared/contact_header"%>
+<% end %>
+<section id="container">
+<div class="wrap-container">
+<% if request.path == '/' %>
+<%= render partial: "shared/section_1"%>
+<% elsif request.path == '/show'%>
+<%= render partial: "shared/section_2"%>
+<% else %>
+<%= render partial: "shared/section_3_contact"%>
+<% end %>
+
+<%= yield %>
+</div>
+</section>
+<%= render partial: "shared/footer"%>
+</div>
+</body>
+</html>
